@@ -1,0 +1,29 @@
+# ============================================================================
+# AI Commerce Platform - Product Service
+# CODEOWNERS
+# ============================================================================
+
+# Default owner
+* @oliversantos573
+
+# GitHub configuration
+.github/ @oliversantos573
+
+# Documentation
+docs/ @oliversantos573
+
+# Source Code
+src/ @oliversantos573
+
+# Maven
+pom.xml @oliversantos573
+
+# Docker
+Dockerfile @oliversantos573
+docker-compose.yml @oliversantos573
+
+# README
+README.md @oliversantos573
+
+# License
+LICENSE @oliversantos573
