@@ -1,0 +1,43 @@
+name: Continuous Integration
+
+on:
+  push:
+    branches:
+      - main
+      - develop
+      - 'feature/**'
+
+  pull_request:
+    branches:
+      - main
+      - develop
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Set up JDK 21
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '21'
+          cache: maven
+
+      - name: Grant execute permission to Maven Wrapper
+        if: hashFiles('mvnw') != ''
+        run: chmod +x mvnw
+
+      - name: Compile Project
+        run: mvn -B clean compile
+
+      - name: Run Unit Tests
+        run: mvn test
+
+      - name: Package Application
+        run: mvn -B package -DskipTests
