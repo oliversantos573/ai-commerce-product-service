@@ -1,8 +1,7 @@
 package com.aicommerce.product.domain.exception.product;
 
-import com.aicommerce.product.domain.exception.domainexception.DomainException;
 
-public class InvalidDescriptionException extends DomainException {
+public class InvalidDescriptionException extends ProductException {
 
     public InvalidDescriptionException(String message) {
         super(message);

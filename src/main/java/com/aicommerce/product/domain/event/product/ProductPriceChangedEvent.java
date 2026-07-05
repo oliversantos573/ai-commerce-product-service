@@ -1,5 +1,6 @@
 package com.aicommerce.product.domain.event.product;
 
+import com.aicommerce.product.domain.shared.enumaration.ProductEventType;
 import com.aicommerce.product.domain.valueobject.identifier.ProductId;
 
 import java.math.BigDecimal;
@@ -24,8 +25,8 @@ public final class ProductPriceChangedEvent extends AbstractProductEvent {
     }
 
     @Override
-    public String getEventType() {
-        return "PRODUCT_PRICE_CHANGED";
+    public ProductEventType getEventType() {
+        return ProductEventType.PRODUCT_PRICE_CHANGED;
     }
 
     public BigDecimal getOldPrice() {
