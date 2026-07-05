@@ -108,21 +108,21 @@ public class Product extends AggregateRoot<ProductId> {
     }
 
     public void update(
-
             ProductName name,
             Description description,
             CategoryId categoryId,
             BrandId brandId,
-            Instant updatedAt
+            Instant updatedAt) {
 
-    ) {
+        this.name = Objects.requireNonNull(name);
+        this.description = Objects.requireNonNull(description);
+        this.categoryId = Objects.requireNonNull(categoryId);
+        this.brandId = Objects.requireNonNull(brandId);
+        this.updatedAt = Objects.requireNonNull(updatedAt);
 
-        this.name = name;
-        this.description = description;
-        this.categoryId = categoryId;
-        this.brandId = brandId;
-        this.updatedAt = updatedAt;
-
+        registerEvent(
+                new ProductUpdatedEvent(getId(), updatedAt)
+        );
     }
 
     public void activate(Instant now) {

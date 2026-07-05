@@ -1,5 +1,6 @@
 package com.aicommerce.product.domain.event.product;
 
+import com.aicommerce.product.domain.shared.enumaration.ProductEventType;
 import com.aicommerce.product.domain.valueobject.identifier.ProductId;
 
 import java.time.Instant;
@@ -14,8 +15,8 @@ public final class ProductUpdatedEvent extends AbstractProductEvent {
     }
 
     @Override
-    public String getEventType() {
-        return "PRODUCT_UPDATED";
+    public ProductEventType getEventType() {
+        return  ProductEventType.PRODUCT_UPDATED;
     }
 
 }
