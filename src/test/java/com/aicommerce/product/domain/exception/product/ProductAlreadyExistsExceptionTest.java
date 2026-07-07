@@ -2,7 +2,6 @@ package com.aicommerce.product.domain.exception.product;
 
 import com.aicommerce.product.domain.valueobject.product.Sku;
 import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 class ProductAlreadyExistsExceptionTest {

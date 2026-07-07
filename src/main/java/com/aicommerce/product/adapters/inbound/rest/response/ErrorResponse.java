@@ -1,10 +1,6 @@
 package com.aicommerce.product.adapters.inbound.rest.response;
 
 import java.time.Instant;
-import java.util.List;
-
-
-import java.time.Instant;
 
 public record ErrorResponse(
 

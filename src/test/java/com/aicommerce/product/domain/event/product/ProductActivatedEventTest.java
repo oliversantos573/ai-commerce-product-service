@@ -3,10 +3,8 @@ package com.aicommerce.product.domain.event.product;
 import com.aicommerce.product.domain.shared.enumaration.ProductEventType;
 import com.aicommerce.product.domain.valueobject.identifier.ProductId;
 import org.junit.jupiter.api.Test;
-
 import java.time.Instant;
 import java.util.UUID;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 class ProductActivatedEventTest {

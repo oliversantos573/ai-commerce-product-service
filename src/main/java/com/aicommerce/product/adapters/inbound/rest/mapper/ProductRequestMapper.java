@@ -5,7 +5,6 @@ import com.aicommerce.product.adapters.inbound.rest.request.UpdateProductRequest
 import com.aicommerce.product.application.command.CreateProductCommand;
 import com.aicommerce.product.application.command.UpdateProductCommand;
 import com.aicommerce.product.domain.valueobject.product.Sku;
-
 import java.util.UUID;
 
 public final class ProductRequestMapper {
@@ -33,8 +32,8 @@ public final class ProductRequestMapper {
                 id,
                 request.name(),
                 request.description(),
-                request.categoryId(),
-                request.brandId()
+                request.brandId(),
+                request.categoryId()
         );
     }
 

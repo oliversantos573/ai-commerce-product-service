@@ -2,6 +2,7 @@ package com.aicommerce.product.application.service;
 
 import com.aicommerce.product.application.command.UpdateProductCommand;
 import com.aicommerce.product.application.dto.response.ProductResponse;
+import com.aicommerce.product.application.mapper.ProductMapper;
 import com.aicommerce.product.application.port.inbound.UpdateProductUseCase;
 import com.aicommerce.product.application.port.outbound.ClockPort;
 import com.aicommerce.product.application.port.outbound.ProductRepositoryPort;
@@ -48,7 +49,7 @@ public class UpdateProductService implements UpdateProductUseCase {
                 clockPort.now()
         );
 
-        return ProductResponse.from(
+        return ProductMapper.toResponse(
                 repository.save(product)
         );
     }
