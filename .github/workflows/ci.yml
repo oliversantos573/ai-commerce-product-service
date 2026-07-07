@@ -20,15 +20,12 @@ jobs:
     services:
       postgres:
         image: postgres:16
-
         env:
           POSTGRES_DB: product_db
           POSTGRES_USER: postgres
           POSTGRES_PASSWORD: postgres
-
         ports:
           - 5432:5432
-
         options: >-
           --health-cmd="pg_isready -U postgres -d product_db"
           --health-interval=10s
@@ -74,3 +71,10 @@ jobs:
           -Dsonar.host.url=https://sonarcloud.io
           -Dsonar.coverage.jacoco.xmlReportPaths=target/site/jacoco/jacoco.xml
 
+      - name: Deploy JaCoCo Report to GitHub Pages
+        if: github.ref == 'refs/heads/main'
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: target/site/jacoco
+          publish_branch: gh-pages
