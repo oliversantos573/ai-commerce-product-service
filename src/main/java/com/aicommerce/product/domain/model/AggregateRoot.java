@@ -2,9 +2,7 @@ package com.aicommerce.product.domain.model;
 
 import com.aicommerce.product.domain.event.DomainEvent;
 import com.aicommerce.product.domain.event.DomainEventAware;
-
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 

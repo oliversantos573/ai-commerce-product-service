@@ -3,93 +3,123 @@
 <p align="center">
 
 ![Java](https://img.shields.io/badge/Java-21-orange)
-![Spring Boot](https://img.shields.io/badge/Spring_Boot-3.5-brightgreen)
+![Spring Boot](https://img.shields.io/badge/Spring_Boot-3.5-green)
 ![Architecture](https://img.shields.io/badge/Architecture-Hexagonal-blue)
-![DDD](https://img.shields.io/badge/DDD-Domain_Driven_Design-red)
-![Build](https://img.shields.io/badge/Build-Maven-blue)
+![DDD](https://img.shields.io/badge/DDD-Domain--Driven--Design-red)
 ![Database](https://img.shields.io/badge/PostgreSQL-16-blue)
-![Flyway](https://img.shields.io/badge/Flyway-Versioned_Migrations-red)
-![Status](https://img.shields.io/badge/Status-In_Development-yellow)
+![Build](https://img.shields.io/badge/Build-Maven-red)
+![Coverage](https://img.shields.io/badge/JaCoCo-97%25-brightgreen)
+![Tests](https://img.shields.io/badge/Tests-JUnit5%20%7C%20Mockito-success)
+![CI](https://img.shields.io/badge/GitHub_Actions-Passing-success)
+![Quality](https://img.shields.io/badge/SonarCloud-Code_Quality-blue)
 
 </p>
 
 ---
 
-# AI-Commerce
+# AI-Commerce Platform
 
-Enterprise E-Commerce Platform built with modern Java.
+Enterprise Product Microservice developed with **Java 21**, following modern software engineering practices and enterprise architecture patterns.
 
-The purpose of this project is to build a production-ready e-commerce backend applying Software Engineering best practices, Clean Architecture, Domain-Driven Design (DDD), Hexagonal Architecture, AWS Cloud patterns, Event-Driven Architecture and Artificial Intelligence integrations.
-
-This repository is part of a larger ecosystem where each business capability is implemented as an independent microservice.
+This project is part of the **AI-Commerce Platform**, an ecosystem of cloud-native microservices built to simulate a real production environment using Domain-Driven Design, Hexagonal Architecture, Event-Driven Architecture and AWS-ready infrastructure.
 
 ---
 
-# Project Goals
+# Objectives
 
-- Learn Enterprise Java Development
+- Build enterprise-grade Java microservices
+- Apply Domain-Driven Design (DDD)
 - Apply Hexagonal Architecture
-- Apply Domain Driven Design
-- Build Production Ready APIs
 - Follow SOLID Principles
-- Event Driven Architecture
-- Cloud Native Design
-- AWS Ready
-- AI Ready
-- High Test Coverage
+- Create Rich Domain Models
+- Implement Clean Architecture
+- Achieve high automated test coverage
+- Apply CI/CD
+- Prepare the application for Kubernetes and AWS
+- Integrate Artificial Intelligence services
 
 ---
 
 # Current Module
 
-```
-Product Service
-```
+## Product Service
 
-Responsible for product management.
+Responsible for managing the product catalog.
 
 Current features:
 
-- Create Product
-- Find Product by Id
-- List Products (Pagination)
-- Update Product
-- Delete Product
+- ✅ Create Product
+- ✅ Update Product
+- ✅ Delete Product
+- ✅ Find Product by Id
+- ✅ List Products
+- ✅ Pagination
+- ✅ Bean Validation
+- ✅ Rich Domain Model
+- ✅ Value Objects
+- ✅ Domain Events
+- ✅ Global Exception Handler
 
 ---
 
 # Architecture
 
 ```
-                  Client
+                Client
 
-                     │
+                   │
 
-          REST Controller (Inbound)
+        REST Controller (Inbound)
 
-                     │
+                   │
 
-              Use Case (Application)
+        Application Service Layer
 
-                     │
+                   │
 
-              Inbound Port
+             Use Cases / Commands
 
-                     │
+                   │
 
-                  Domain
+             Domain (Business Rules)
 
-                     │
+                   │
 
-              Outbound Port
+             Outbound Ports
 
-                     │
+                   │
 
         Persistence Adapter (JPA)
 
-                     │
+                   │
 
               PostgreSQL
+```
+
+The Domain Layer has **no dependency** on Spring Framework.
+
+---
+
+# Hexagonal Architecture
+
+```
+Adapters
+
+↓
+
+Application
+
+↓
+
+Domain
+
+↓
+
+Ports
+
+↓
+
+Infrastructure
 ```
 
 ---
@@ -97,18 +127,24 @@ Current features:
 # Technologies
 
 - Java 21
-- Spring Boot
+- Spring Boot 3.5
 - Spring Data JPA
+- Spring Security
+- Bean Validation
 - PostgreSQL
 - Flyway
 - Maven
 - Docker
 - Docker Compose
-- Swagger OpenAPI
-- Bean Validation
+- Swagger / OpenAPI
 - Lombok
-- Hexagonal Architecture
-- Domain Driven Design
+- JUnit 5
+- Mockito
+- Spring Boot Test
+- Testcontainers
+- JaCoCo
+- SonarCloud
+- GitHub Actions
 
 ---
 
@@ -117,99 +153,57 @@ Current features:
 ```
 src
 
- ├── adapters
- │
- ├── application
- │
- ├── domain
- │
- ├── infrastructure
- │
- └── config
+├── adapters
+│   ├── inbound
+│   └── outbound
+│
+├── application
+│   ├── command
+│   ├── dto
+│   ├── mapper
+│   ├── query
+│   └── service
+│
+├── domain
+│   ├── event
+│   ├── exception
+│   ├── factory
+│   ├── model
+│   ├── ports
+│   ├── shared
+│   └── valueobject
+│
+├── infrastructure
+│
+└── config
 ```
 
 ---
 
-# Hexagonal Architecture
+# REST API
 
-```
-Inbound Adapter
-
-↓
-
-Inbound Port
-
-↓
-
-Application Service
-
-↓
-
-Domain
-
-↓
-
-Outbound Port
-
-↓
-
-Outbound Adapter
-
-↓
-
-Database
-```
-
-The domain layer has no dependency on frameworks.
-
----
-
-# Current CRUD
-
-| Endpoint | Status |
-|-----------|--------|
-| POST /products | ✅ |
-| GET /products/{id} | ✅ |
-| GET /products | ✅ |
-| PUT /products/{id} | ✅ |
-| DELETE /products/{id} | ✅ |
+| Endpoint | Description |
+|-----------|-------------|
+| POST /products | Create Product |
+| GET /products/{id} | Find Product |
+| GET /products | List Products |
+| PUT /products/{id} | Update Product |
+| DELETE /products/{id} | Delete Product |
 
 ---
 
 # API Documentation
 
-After running the application:
+Swagger UI
 
 ```
 http://localhost:8081/swagger
 ```
 
-OpenAPI JSON
+OpenAPI
 
 ```
 http://localhost:8081/api-docs
-```
-
----
-
-# Running the Project
-
-Clone
-
-```bash
-git clone https://github.com/SEU-USUARIO/product-service.git
-```
-
-Docker
-
-```bash
-docker compose up -d
-```
-
-Run
-
-```bash
-mvn spring-boot:run
 ```
 
 ---
@@ -219,25 +213,15 @@ mvn spring-boot:run
 PostgreSQL
 
 ```
-localhost:5432
-```
+Host: localhost
 
-Database
+Port: 5432
 
-```
-productdb
-```
+Database: productdb
 
-Username
+Username: postgres
 
-```
-postgres
-```
-
-Password
-
-```
-postgres
+Password: postgres
 ```
 
 ---
@@ -254,79 +238,275 @@ V1__create_products_table.sql
 
 ---
 
-# Roadmap
+# Docker
 
-## Phase 1
+Start database
 
-- [x] Product CRUD
+```bash
+docker compose up -d
+```
 
-## Phase 2
+Stop
 
-- [ ] Category CRUD
-
-## Phase 3
-
-- [ ] Brand CRUD
-
-## Phase 4
-
-- [ ] Inventory
-
-## Phase 5
-
-- [ ] Pricing
-
-## Phase 6
-
-- [ ] Orders
-
-## Phase 7
-
-- [ ] Payments
-
-## Phase 8
-
-- [ ] Notifications
-
-## Phase 9
-
-- [ ] Kafka Integration
-
-## Phase 10
-
-- [ ] Redis Cache
-
-## Phase 11
-
-- [ ] AWS Deployment
-
-## Phase 12
-
-- [ ] AI Integration
+```bash
+docker compose down
+```
 
 ---
 
-# Future Improvements
+# Running the Project
 
-- JWT Authentication
-- OAuth2
-- Keycloak
-- OpenTelemetry
-- Prometheus
-- Grafana
-- Resilience4J
+Clone repository
+
+```bash
+git clone https://github.com/oliversantos573/ai-commerce-product-service.git
+```
+
+Enter project
+
+```bash
+cd ai-commerce-product-service
+```
+
+Compile
+
+```bash
+mvn clean compile
+```
+
+Run
+
+```bash
+mvn spring-boot:run
+```
+
+---
+
+# Testing
+
+The project contains automated tests covering multiple layers of the application.
+
+## Unit Tests
+
+Frameworks:
+
+- JUnit 5
+- Mockito
+
+Covered layers:
+
+- Domain
+- Application Services
+- Mappers
+- Value Objects
+- Business Rules
+- Domain Events
+
+Execute
+
+```bash
+mvn test
+```
+
+---
+
+# Integration Tests
+
+Integration tests validate the interaction between:
+
+- REST Controllers
+- Spring Context
+- Persistence Layer
+- PostgreSQL
+- Repository Adapters
+
+Frameworks
+
+- Spring Boot Test
 - Testcontainers
-- Kubernetes
-- ECS
-- SQS
-- SNS
-- EventBridge
+- PostgreSQL Container
+
+Execute
+
+```bash
+mvn verify
+```
+
+---
+
+# Testcontainers
+
+The project uses **Testcontainers** to execute integration tests against a real PostgreSQL container instead of an in-memory database.
+
+Benefits
+
+- Isolated environment
+- Real database behavior
+- Reliable integration testing
+- Production-like execution
+
+---
+
+# Code Coverage
+
+Coverage is generated automatically using **JaCoCo**.
+
+Current coverage
+
+```
+97%
+```
+
+Generate report
+
+```bash
+mvn clean verify
+```
+
+Open
+
+```
+target/site/jacoco/index.html
+```
+
+---
+
+# Code Quality
+
+Static analysis is performed using **SonarCloud**.
+
+Metrics analyzed:
+
+- Bugs
+- Vulnerabilities
+- Code Smells
+- Duplications
+- Coverage
+- Reliability
+- Maintainability
+- Security Hotspots
+
+Run manually
+
+```bash
+mvn sonar:sonar
+```
+
+---
+
+# Continuous Integration
+
+GitHub Actions automatically executes:
+
+- Checkout
+- Java 21 Setup
+- Build
+- Unit Tests
+- Integration Tests
+- JaCoCo Report
+- SonarCloud Analysis
+- Package
+
+Pipeline
+
+```
+Push
+
+↓
+
+Compile
+
+↓
+
+Unit Tests
+
+↓
+
+Integration Tests
+
+↓
+
+JaCoCo
+
+↓
+
+SonarCloud
+
+↓
+
+Package
+```
+
+---
+
+# Quality Metrics
+
+| Metric | Status |
+|---------|--------|
+| Java 21 | ✅ |
+| Hexagonal Architecture | ✅ |
+| DDD | ✅ |
+| SOLID | ✅ |
+| Unit Tests | ✅ |
+| Integration Tests | ✅ |
+| Mockito | ✅ |
+| Spring Boot Test | ✅ |
+| Testcontainers | ✅ |
+| JaCoCo | ✅ |
+| SonarCloud | ✅ |
+| GitHub Actions | ✅ |
+| Flyway | ✅ |
+| Swagger | ✅ |
+
+---
+
+# Current Status
+
+Completed
+
+- ✅ Product CRUD
+- ✅ Rich Domain Model
+- ✅ Value Objects
+- ✅ Domain Events
+- ✅ Exception Handling
+- ✅ PostgreSQL
+- ✅ Flyway
+- ✅ Docker
+- ✅ Swagger
+- ✅ Unit Tests
+- ✅ Integration Tests
+- ✅ Mockito
+- ✅ Spring Boot Test
+- ✅ Testcontainers
+- ✅ JaCoCo
+- ✅ SonarCloud
+- ✅ GitHub Actions
+
+---
+
+# Roadmap
+
+- [ ] Category Module
+- [ ] Brand Module
+- [ ] Inventory Module
+- [ ] Pricing Module
+- [ ] Order Module
+- [ ] Payment Module
+- [ ] Kafka Integration
+- [ ] Redis Cache
+- [ ] Kubernetes
+- [ ] AWS ECS
+- [ ] AWS EKS
+- [ ] Terraform
+- [ ] OpenTelemetry
+- [ ] Prometheus
+- [ ] Grafana
+- [ ] Resilience4J
+- [ ] AI Recommendation Engine
 
 ---
 
 # Documentation
-
-Detailed documentation is available in:
 
 ```
 docs/
@@ -340,14 +520,35 @@ docs/
 
 # Author
 
-Oliver Santos
+**Oliver Santos**
 
 Java Backend Engineer
 
-Enterprise Java • Spring Boot • AWS • AI
+Specializing in:
+
+- Java
+- Spring Boot
+- DDD
+- Hexagonal Architecture
+- AWS
+- Artificial Intelligence
+
+GitHub
+
+```
+https://github.com/oliversantos573
+```
 
 ---
 
 # License
 
-This project is for educational purposes.
+This project is intended for educational purposes and to demonstrate enterprise software engineering practices.
+
+---
+
+<p align="center">
+
+⭐ If you found this project useful, consider giving it a Star.
+
+</p>

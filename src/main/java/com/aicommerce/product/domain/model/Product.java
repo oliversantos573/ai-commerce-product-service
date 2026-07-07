@@ -11,7 +11,6 @@ import com.aicommerce.product.domain.valueobject.product.Sku;
 import com.aicommerce.product.domain.valueobject.identifier.BrandId;
 import com.aicommerce.product.domain.valueobject.identifier.CategoryId;
 import com.aicommerce.product.domain.valueobject.identifier.ProductId;
-
 import java.time.Instant;
 import java.util.Objects;
 

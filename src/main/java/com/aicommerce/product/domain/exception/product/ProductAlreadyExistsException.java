@@ -1,6 +1,5 @@
 package com.aicommerce.product.domain.exception.product;
 
-import com.aicommerce.product.domain.exception.domainexception.DomainException;
 import com.aicommerce.product.domain.valueobject.product.Sku;
 
 public class ProductAlreadyExistsException extends ProductException {

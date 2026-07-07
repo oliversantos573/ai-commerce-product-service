@@ -1,6 +1,7 @@
 package com.aicommerce.product.application.service;
 
 import com.aicommerce.product.application.dto.response.ProductResponse;
+import com.aicommerce.product.application.mapper.ProductMapper;
 import com.aicommerce.product.application.port.inbound.ListProductsUseCase;
 import com.aicommerce.product.application.port.outbound.ProductRepositoryPort;
 import com.aicommerce.product.application.query.ListProductsQuery;
@@ -31,8 +32,8 @@ public class ListProductsService implements ListProductsUseCase {
         );
 
         return productRepositoryPort
-                 .findAll(pageable)
-                .map(ProductResponse::from);
+                .findAll(pageable)
+                .map(ProductMapper::toResponse);
     }
 
 }

@@ -17,7 +17,6 @@ import com.aicommerce.product.domain.valueobject.product.Description;
 import com.aicommerce.product.domain.valueobject.product.ProductName;
 import com.aicommerce.product.domain.valueobject.product.Sku;
 import org.springframework.stereotype.Service;
-
 import java.time.Instant;
 
 @Service

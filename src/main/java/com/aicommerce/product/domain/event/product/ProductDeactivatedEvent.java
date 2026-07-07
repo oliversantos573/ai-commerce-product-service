@@ -1,6 +1,5 @@
 package com.aicommerce.product.domain.event.product;
 
-import com.aicommerce.product.domain.event.DomainEvent;
 import com.aicommerce.product.domain.shared.enumaration.ProductEventType;
 import com.aicommerce.product.domain.valueobject.identifier.ProductId;
 import java.time.Instant;

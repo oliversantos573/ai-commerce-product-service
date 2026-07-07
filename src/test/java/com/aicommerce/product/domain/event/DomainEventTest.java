@@ -2,9 +2,7 @@ package com.aicommerce.product.domain.event;
 
 import com.aicommerce.product.domain.shared.enumaration.ProductEventType;
 import org.junit.jupiter.api.Test;
-
 import java.time.Instant;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 class DomainEventTest {

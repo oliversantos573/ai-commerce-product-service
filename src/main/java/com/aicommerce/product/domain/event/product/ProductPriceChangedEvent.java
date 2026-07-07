@@ -2,7 +2,6 @@ package com.aicommerce.product.domain.event.product;
 
 import com.aicommerce.product.domain.shared.enumaration.ProductEventType;
 import com.aicommerce.product.domain.valueobject.identifier.ProductId;
-
 import java.math.BigDecimal;
 import java.time.Instant;
 import java.util.Objects;

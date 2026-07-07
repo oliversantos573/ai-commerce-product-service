@@ -2,7 +2,6 @@ package com.aicommerce.product.adapters.outbound.persistence.entity;
 
 import com.aicommerce.product.domain.shared.enumaration.ProductStatus;
 import jakarta.persistence.*;
-
 import java.time.Instant;
 import java.util.UUID;
 

@@ -3,11 +3,9 @@ package com.aicommerce.product.domain.model;
 import com.aicommerce.product.domain.event.DomainEvent;
 import com.aicommerce.product.domain.shared.enumaration.ProductEventType;
 import org.junit.jupiter.api.Test;
-
 import java.time.Instant;
 import java.util.List;
 import java.util.UUID;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 class AggregateRootTest {

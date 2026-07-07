@@ -1,7 +1,6 @@
 package com.aicommerce.product.domain.valueobject.common;
 
 import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 class StringValueObjectTest {

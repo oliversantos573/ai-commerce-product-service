@@ -1,10 +1,8 @@
 package com.aicommerce.product.adapters.inbound.rest.request;
 
-import com.aicommerce.product.domain.valueobject.product.Sku;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
-
 import java.util.UUID;
 
 public record CreateProductRequest(

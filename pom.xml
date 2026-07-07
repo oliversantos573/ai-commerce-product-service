@@ -43,9 +43,24 @@
 
 	<properties>
 		<java.version>21</java.version>
+
+		<sonar.coverage.jacoco.xmlReportPaths>
+			${project.build.directory}/site/jacoco/jacoco.xml
+		</sonar.coverage.jacoco.xmlReportPaths>
 	</properties>
 
 	<dependencies>
+		<dependency>
+			<groupId>org.testcontainers</groupId>
+			<artifactId>junit-jupiter</artifactId>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.testcontainers</groupId>
+			<artifactId>postgresql</artifactId>
+			<scope>test</scope>
+		</dependency>
 		<!-- OpenAPI -->
 		<dependency>
 			<groupId>org.springdoc</groupId>
@@ -140,6 +155,149 @@
 
 	<build>
 		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-failsafe-plugin</artifactId>
+				<version>3.5.3</version>
+
+				<executions>
+					<execution>
+						<goals>
+							<goal>integration-test</goal>
+							<goal>verify</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>3.5.3</version>
+			</plugin>
+			<plugin>
+				<groupId>org.sonarsource.scanner.maven</groupId>
+				<artifactId>sonar-maven-plugin</artifactId>
+				<version>5.1.0.4751</version>
+			</plugin>
+			<plugin>
+				<groupId>org.jacoco</groupId>
+				<artifactId>jacoco-maven-plugin</artifactId>
+				<version>0.8.13</version>
+
+				<executions>
+
+					<execution>
+						<id>prepare-agent</id>
+						<goals>
+							<goal>prepare-agent</goal>
+						</goals>
+					</execution>
+
+					<execution>
+						<id>report</id>
+
+						<phase>verify</phase>
+
+						<goals>
+							<goal>report</goal>
+						</goals>
+
+						<configuration>
+
+							<formats>
+								<format>HTML</format>
+								<format>XML</format>
+							</formats>
+
+							<excludes>
+								<exclude>**/*Application.class</exclude>
+								<exclude>**/config/**</exclude>
+								<exclude>**/request/**</exclude>
+								<exclude>**/response/**</exclude>
+								<exclude>**/application/port/**</exclude>
+								<!-- Enums -->
+								<exclude>**/domain/shared/enumaration/Currency.class</exclude>
+								<exclude>**/domain/shared/enumaration/CustomerStatus.class</exclude>
+								<exclude>**/domain/shared/enumaration/InventoryStatus.class</exclude>
+								<exclude>**/domain/shared/enumaration/OrderStatus.class</exclude>
+								<exclude>**/domain/shared/enumaration/PaymentStatus.class</exclude>
+								<exclude>**/domain/shared/enumaration/ShipmentStatus.class</exclude>
+								<exclude>**/domain/shared/enumaration/ProductType.class</exclude>
+								<!-- Value Objects -->
+								<exclude>**/domain/valueobject/identifier/CustomerId.class</exclude>
+								<exclude>**/domain/valueobject/identifier/OrderId.class</exclude>
+								<exclude>**/domain/valueobject/common/Address.class</exclude>
+								<exclude>**/domain/valueobject/costumer/CustomerName.class</exclude>
+								<exclude>**/domain/valueobject/costumer/Email.class</exclude>
+								<exclude>**/domain/valueobject/costumer/Phone.class</exclude>
+							</excludes>
+
+						</configuration>
+
+					</execution>
+
+					<execution>
+
+						<id>check</id>
+
+						<phase>verify</phase>
+
+						<goals>
+							<goal>check</goal>
+						</goals>
+
+						<configuration>
+							<excludes>
+								<exclude>**/*Application.class</exclude>
+								<exclude>**/config/**</exclude>
+								<exclude>**/request/**</exclude>
+								<exclude>**/response/**</exclude>
+								<exclude>**/application/port/**</exclude>
+								<!-- Enums -->
+								<exclude>**/domain/shared/enumaration/Currency.class</exclude>
+								<exclude>**/domain/shared/enumaration/CustomerStatus.class</exclude>
+								<exclude>**/domain/shared/enumaration/InventoryStatus.class</exclude>
+								<exclude>**/domain/shared/enumaration/OrderStatus.class</exclude>
+								<exclude>**/domain/shared/enumaration/PaymentStatus.class</exclude>
+								<exclude>**/domain/shared/enumaration/ShipmentStatus.class</exclude>
+								<exclude>**/domain/shared/enumaration/ProductType.class</exclude>
+								<!-- Value Objects -->
+								<exclude>**/domain/valueobject/identifier/CustomerId.class</exclude>
+								<exclude>**/domain/valueobject/identifier/OrderId.class</exclude>
+								<exclude>**/domain/valueobject/common/Address.class</exclude>
+								<exclude>**/domain/valueobject/costumer/CustomerName.class</exclude>
+								<exclude>**/domain/valueobject/costumer/Email.class</exclude>
+								<exclude>**/domain/valueobject/costumer/Phone.class</exclude>
+							</excludes>
+							<rules>
+
+								<rule>
+
+									<element>BUNDLE</element>
+
+									<limits>
+
+										<limit>
+											<counter>LINE</counter>
+											<value>COVEREDRATIO</value>
+											<minimum>0.90</minimum>
+										</limit>
+
+									</limits>
+
+								</rule>
+
+							</rules>
+
+						</configuration>
+
+					</execution>
+
+				</executions>
+
+			</plugin>
+
+
 			<!-- Spring Boot plugin -->
 			<plugin>
 				<groupId>org.springframework.boot</groupId>

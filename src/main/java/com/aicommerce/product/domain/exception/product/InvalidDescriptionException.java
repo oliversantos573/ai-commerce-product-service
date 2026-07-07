@@ -1,6 +1,5 @@
 package com.aicommerce.product.domain.exception.product;
 
-
 public class InvalidDescriptionException extends ProductException {
 
     public InvalidDescriptionException(String message) {
