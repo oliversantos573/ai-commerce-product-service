@@ -305,15 +305,53 @@ The Product Service follows a strict implementation of **Hexagonal Architecture 
 
 The primary goal is to isolate business rules from frameworks, databases and external services, ensuring that the domain remains independent and highly maintainable.
 
-flowchart TD
-A[External World] --> B[Inbound Adapters (Controllers)]
-B --> C[Application Layer (Use Cases)]
-C --> D[Inbound Ports (Interfaces)]
-D --> E[DOMAIN (Business Core)]
-E --> F[Outbound Ports (Interfaces)]
-F --> G[Outbound Adapters (Infrastructure)]
-G --> H[PostgreSQL • Kafka • Elasticsearch • Datadog • AWS]
+```
+                         External World
 
+                               │
+
+             REST API / AI Agents / Kafka Consumers
+
+                               │
+
+                 Inbound Adapters (Controllers)
+
+                               │
+
+                    Application Layer (Use Cases)
+
+                               │
+
+                     Inbound Ports (Interfaces)
+
+                               │
+
+──────────────────────────────────────────────────────────
+
+                     DOMAIN (Business Core)
+
+         Aggregate Roots • Entities • Value Objects
+
+          Domain Events • Domain Services • Policies
+
+──────────────────────────────────────────────────────────
+
+                               │
+
+                   Outbound Ports (Interfaces)
+
+                               │
+
+       Persistence • Kafka • Search • AI • Observability
+
+                               │
+
+                 Outbound Adapters (Infrastructure)
+
+                               │
+
+ PostgreSQL • Kafka • Elasticsearch • Datadog • AWS
+```
 
 ---
 
@@ -381,36 +419,57 @@ Instead of storing only CRUD information, the Product has been redesigned to sup
 
 Future Aggregate:
 
-flowchart TD
-Product --> ProductId
-Product --> SKU
-Product --> ProductName
-Product --> ShortDescription
-Product --> Description
-Product --> BrandId
-Product --> CategoryId
-Product --> Price
-Product --> Cost
-Product --> Currency
-Product --> StockQuantity
-Product --> Weight
-Product --> Dimensions
-Product --> Images
-Product --> TechnicalSpecifications
-Product --> Attributes
-Product --> Tags
-Product --> Keywords
-Product --> AIDescription
-Product --> AIKeywords
-Product --> EmbeddingsId
-Product --> SearchScore
-Product --> PopularityScore
-Product --> Rating
-Product --> TotalReviews
-Product --> ProductStatus
-Product --> CreatedAt
-Product --> UpdatedAt
+```
+Product
 
+├── ProductId
+├── SKU
+
+├── ProductName
+├── ShortDescription
+├── Description
+
+├── BrandId
+├── CategoryId
+
+├── Price
+├── Cost
+├── Currency
+
+├── StockQuantity
+
+├── Weight
+├── Dimensions
+
+├── Images
+
+├── TechnicalSpecifications
+
+├── Attributes
+
+├── Tags
+
+├── Keywords
+
+├── AI Description
+
+├── AI Keywords
+
+├── Embeddings Id
+
+├── Search Score
+
+├── Popularity Score
+
+├── Rating
+
+├── Total Reviews
+
+├── Product Status
+
+├── Created At
+└── Updated At
+```
 
 ---
 
@@ -452,11 +511,45 @@ instead of performing a simple SQL query.
 
 # Product Lifecycle
 
-flowchart TD
-A[Create Product] --> B[Draft] --> C[Validation] --> D[Activate]
-D --> E[Available for Sale] --> F[Indexed] --> G[Embedded]
-G --> H[AI Search Ready] --> I[Recommendation Ready] --> J[Archived]
+```
+Create Product
 
+↓
+
+Draft
+
+↓
+
+Validation
+
+↓
+
+Activate
+
+↓
+
+Available for Sale
+
+↓
+
+Indexed
+
+↓
+
+Embedded
+
+↓
+
+AI Search Ready
+
+↓
+
+Recommendation Ready
+
+↓
+
+Archived
+```
 
 ---
 
@@ -504,12 +597,41 @@ These events will later be published to Kafka.
 
 Future architecture:
 
-flowchart TD
-A[Product Created] --> B[Kafka] --> C[Product Agent]
-C --> D[Search Index] --> E[Vector Database]
-E --> F[Recommendation Engine] --> G[Analytics]
-G --> H[Notification Service] --> I[Audit Service]
+```
+Product Created
 
+↓
+
+Kafka
+
+↓
+
+Product Agent
+
+↓
+
+Search Index
+
+↓
+
+Vector Database
+
+↓
+
+Recommendation Engine
+
+↓
+
+Analytics
+
+↓
+
+Notification Service
+
+↓
+
+Audit Service
+```
 
 The Product Service never directly calls these systems.
 
